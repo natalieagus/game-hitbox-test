@@ -11,6 +11,18 @@ public class PlayerCombat : MonoBehaviour
     public GameEvent attackEvent;
     [SerializeField] private HitStop hitStop;
 
+
+
+    [SerializeField] Collider2D hitbox;
+    [SerializeField] private LayerMask defaultLayer;
+    [SerializeField] private LayerMask activeLayer;
+
+    private PlayerHitbox playerHitbox;
+
+    void Awake()
+    {
+        playerHitbox = GetComponentInChildren<PlayerHitbox>();
+    }
     public void HandleCombat()
     {
         if (isDead())
@@ -77,5 +89,30 @@ public class PlayerCombat : MonoBehaviour
         attackHitbox.enabled = false;
     }
 
+    public void AnimationEventAttackTriggered()
+    {
+        FrameLogger.Log("[PLAYER COMBAT] OnAnimationAttackTriggered");
+    }
+
+    private int ToLayer(LayerMask mask)
+    {
+        int maskValue = mask.value;
+        return (int)Mathf.Log(maskValue, 2);
+    }
+
+    public void EnableHitboxLayer()
+    {
+
+        FrameLogger.Log("[PLAYER COMBAT] OnAnimationAttackTriggered");
+        hitbox.gameObject.layer = ToLayer(activeLayer);
+        FrameLogger.Log("[PLAYER COMBAT] Hitbox ACTIVE");
+        playerHitbox.CheckImmediateHits();
+    }
+
+    public void DisableHitboxLayer()
+    {
+        hitbox.gameObject.layer = ToLayer(defaultLayer);
+        FrameLogger.Log("[PLAYER COMBAT] Hitbox IGNORE");
+    }
 
 }

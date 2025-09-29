@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 502b619502fee084a9e1727b326d08cd, type: 3}
   m_Name: DevConsole
   m_EditorClassIdentifier: Assembly-CSharp::DevConsole
-  cheatsOn: 1
+  cheatsOn: 0
   overrideTime: 0
   timeScale: 0.2
   targetFrameRate: 10
