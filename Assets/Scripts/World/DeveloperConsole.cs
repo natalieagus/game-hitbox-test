@@ -13,6 +13,5 @@ public class DeveloperConsole : MonoBehaviour
             if (!hitStop.isWaiting) Time.timeScale = devConsole.timeScale;
         }
         Application.targetFrameRate = devConsole.targetFrameRate;
-        Time.timeScale = devConsole.timeScale;
     }
 }
